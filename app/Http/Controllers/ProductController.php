@@ -26,7 +26,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Product::create([
+        "product_name"=> $request->pd_name,
+        "product_type"=> $request->pd_type,
+        "price"=> $request->pd_price,
+       ]);
+       return "Inserted Successful";
     }
 
     /**
@@ -51,7 +56,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $product = Product::find($id);
+
+        $product ->product_name = $request->pd_name;
+
+        $product->save();
+
+        return "Update Successful.";
+        
+        // return ["id"=> $id, "req"=>$request];
     }
 
     /**
@@ -62,6 +76,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return "Delete Successful.";
     }
 }
