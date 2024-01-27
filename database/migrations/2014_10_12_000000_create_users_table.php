@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('adress');
             $table->string('telephone',10);
             $table->string('password');
+            $table->tinyInteger('role')->default(2);
             $table->rememberToken();
             $table->timestamps();
         });
